@@ -1,0 +1,1 @@
+fetch("https://randompokemon.com/dex/all.json").then((r)=>console.log(r));
