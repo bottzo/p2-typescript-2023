@@ -16,4 +16,4 @@ async function loadPokemons()
     return json;
 }
 const obj = await loadPokemons();
-console.log(obj);
+console.log(obj[0]);
