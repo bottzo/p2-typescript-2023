@@ -9,6 +9,9 @@ function pokemon(id,name,types) {
 pokemon.prototype.getPngName = function (){
     return `${this.name}.png`;
 }
+pokemon.prototype.getAvifName = function (){
+    return `${this.name}.avif`.toLowerCase().replace(' ', '-').replace("%E2%99%80", 'f');
+}
 
 async function loadPokemons()
 {
@@ -41,8 +44,9 @@ function writePokemons(pokemons){
 function imgsHtml(pokemons){
     let images = "";
     for(pokemon of pokemons)
-        images += `<img src="https://randompokemon.com/sprites/normal/${pokemon.getPngName()}" alt="${pokemon.name} image"></img>`;
-        //images += `<img src="https://randompokemon.com/sprites/normal/probopass.png" alt="altaria"></img>`;
+        images += `<img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/${pokemon.getAvifName()}" alt="${pokemon.name} image"></img>`;
+        //console.log(pokemons[31].name);
+        //console.log('%E2%99%80');
     let html = `<!DOCTYPE html>
     <html lang="en">
     <head>
