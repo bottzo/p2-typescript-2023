@@ -12,17 +12,17 @@ async function loadPokemons()
 {
     const response = await fetch("https://randompokemon.com/dex/all.json");
     const json = await response.json();
-    return json;
+    const pokemons = Array(json.length);
+    let i = 0;
+    for(const {id,name,types} of json)
+    {
+        pokemons[i] = new pokemon(id,name,types);
+        ++i;
+    }
+    return pokemons;
 }
 
-loadPokemons().then(function(obj){
-    const pokemons= Array(obj.llength);
-let i = 0;
-for(const {id,name,types} of obj)
-{
-    pokemons[i] = new pokemon(id,name,types);
-    ++i;
-}
+loadPokemons().then(function(pokemons){
 console.log(pokemons[35].name);
 console.log(pokemons[35].getPngName());
 }).catch(function(error){
