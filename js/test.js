@@ -45,7 +45,7 @@ function renderHtml(pokemons){
         if(pokemon.id < 906)
             images += `<img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/${pokemon.getExtensionName("avif")}" alt="${pokemon.name} image"></img>`;
         else
-        images += `<img src="https://img.pokemondb.net/sprites/scarlet-violet/normal/${pokemon.getExtensionName("png")}" alt="${pokemon.name} image"></img>`;
+            images += `<img src="https://img.pokemondb.net/sprites/scarlet-violet/normal/${pokemon.getExtensionName("png")}" alt="${pokemon.name} image"></img>`;
 
     let html = `<!DOCTYPE html>
     <html lang="en">
