@@ -5,12 +5,11 @@ function pokemon(id,name,types) {
     this.name = name;
     this.types = types;
 }
-
-pokemon.prototype.getPngName = function (){
-    return `${this.name}.png`;
+pokemon.prototype.getExtensionName = function (extension){
+    return `${this.resourceName()}.${extension}`;
 }
-pokemon.prototype.getAvifName = function (){
-    return `${this.name}.avif`.toLowerCase().replace(' ', '-').replace("%E2%99%80", 'f');
+pokemon.prototype.resourceName = function (){
+    return this.name.toLowerCase().replace('.','').replace(' ', '-').replace('\'', '');
 }
 
 async function loadPokemons()
@@ -27,7 +26,7 @@ async function loadPokemons()
     return pokemons;
 }
 
-function writePokemons(pokemons){
+function writePokemonsJson(pokemons){
     let data = '[';
     for(pokemon of pokemons)
     {
@@ -39,14 +38,15 @@ function writePokemons(pokemons){
     writeFile("pokemons.json", data);
 }
 
-//request 1 pokemon and create an html page with the image!!!
-//pokemon image resource: https://randompokemon.com/sprites/normal/POKEMON_NAME.png
+
 function imgsHtml(pokemons){
     let images = "";
     for(pokemon of pokemons)
-        images += `<img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/${pokemon.getAvifName()}" alt="${pokemon.name} image"></img>`;
-        //console.log(pokemons[31].name);
-        //console.log('%E2%99%80');
+        if(pokemon.id < 906)
+            images += `<img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/${pokemon.getExtensionName("avif")}" alt="${pokemon.name} image"></img>`;
+        else
+        images += `<img src="https://img.pokemondb.net/sprites/scarlet-violet/normal/${pokemon.getExtensionName("png")}" alt="${pokemon.name} image"></img>`;
+
     let html = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -64,10 +64,10 @@ function imgsHtml(pokemons){
 }
 
 loadPokemons().then(function(pokemons){
-writePokemons(pokemons);
+writePokemonsJson(pokemons);
 imgsHtml(pokemons);
 console.log(pokemons[35].name);
-console.log(pokemons[35].getPngName());
+console.log(pokemons[35].getExtensionName("png"));
 }).catch(function(error){
     console.error("smth went wrong when fetching the url or with the json response parsing");
     console.log(error);
