@@ -25,7 +25,7 @@ async function loadPokemons()
 }
 
 //request 1 pokemon and create an html page with the image!!!
-function wrietPokemons(pokemons){
+function writePokemons(pokemons){
     let data = '[';
     for(pokemon of pokemons)
     {
@@ -38,7 +38,7 @@ function wrietPokemons(pokemons){
 }
 
 loadPokemons().then(function(pokemons){
-wrietPokemons(pokemons);
+writePokemons(pokemons);
 console.log(pokemons[35].name);
 console.log(pokemons[35].getPngName());
 }).catch(function(error){
