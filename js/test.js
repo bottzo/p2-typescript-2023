@@ -39,7 +39,7 @@ function writePokemonsJson(pokemons){
 }
 
 
-function imgsHtml(pokemons){
+function renderHtml(pokemons){
     let images = "";
     for(pokemon of pokemons)
         if(pokemon.id < 906)
@@ -65,7 +65,7 @@ function imgsHtml(pokemons){
 
 loadPokemons().then(function(pokemons){
 writePokemonsJson(pokemons);
-imgsHtml(pokemons);
+renderHtml(pokemons);
 console.log(pokemons[35].name);
 console.log(pokemons[35].getExtensionName("png"));
 }).catch(function(error){
