@@ -30,7 +30,7 @@ function writePokemonsJson(pokemons){
     let data = '[';
     for(pokemon of pokemons)
     {
-        data += `{${pokemon.id},${pokemon.name},${pokemon.types}},`
+        data += `{${pokemon.id},${pokemon.name},[${pokemon.types}]},`
     }
     //removing last coma
     data = data.substring(0,data.length-1);
