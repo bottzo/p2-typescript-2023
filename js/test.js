@@ -24,7 +24,6 @@ async function loadPokemons()
     return pokemons;
 }
 
-//request 1 pokemon and create an html page with the image!!!
 function writePokemons(pokemons){
     let data = '[';
     for(pokemon of pokemons)
@@ -37,8 +36,32 @@ function writePokemons(pokemons){
     writeFile("pokemons.json", data);
 }
 
+//request 1 pokemon and create an html page with the image!!!
+//pokemon image resource: https://randompokemon.com/sprites/normal/POKEMON_NAME.png
+function imgsHtml(pokemons){
+    let images = "";
+    for(pokemon of pokemons)
+        images += `<img src="https://randompokemon.com/sprites/normal/${pokemon.getPngName()}" alt="${pokemon.name} image"></img>`;
+        //images += `<img src="https://randompokemon.com/sprites/normal/probopass.png" alt="altaria"></img>`;
+    let html = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pokemons</title>
+    </head>
+    <body>`;
+    html += images;
+    html +=`
+    </body>
+    </html>"`;
+    writeFile("pokemons.html", html);
+}
+
 loadPokemons().then(function(pokemons){
 writePokemons(pokemons);
+imgsHtml(pokemons);
 console.log(pokemons[35].name);
 console.log(pokemons[35].getPngName());
 }).catch(function(error){
