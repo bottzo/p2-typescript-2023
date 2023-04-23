@@ -1,5 +1,7 @@
 import {writeFile} from "fs/promises";
 
+export {writePokemonsJson, loadPokemons, pokemon, renderHtml}
+
 function pokemon(id,name,types) {
     this.id = id;
     this.name = name;
@@ -29,15 +31,12 @@ async function loadPokemons()
 function writePokemonsJson(pokemons){
     let data = '[';
     for(pokemon of pokemons)
-    {
-        data += `{${pokemon.id},${pokemon.name},[${pokemon.types}]},`
-    }
+        data += `{${pokemon.id},${pokemon.name},[${pokemon.types}]},`;
     //removing last coma
     data = data.substring(0,data.length-1);
     data += ']';
     writeFile("pokemons.json", data);
 }
-
 
 function renderHtml(pokemons){
     let images = "";
@@ -62,13 +61,3 @@ function renderHtml(pokemons){
     </html>"`;
     writeFile("pokemons.html", html);
 }
-
-loadPokemons().then(function(pokemons){
-writePokemonsJson(pokemons);
-renderHtml(pokemons);
-console.log(pokemons[35].name);
-console.log(pokemons[35].getExtensionName("png"));
-}).catch(function(error){
-    console.error("smth went wrong when fetching the url or with the json response parsing");
-    console.log(error);
-});
