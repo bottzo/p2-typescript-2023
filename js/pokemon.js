@@ -41,10 +41,7 @@ function writePokemonsJson(pokemons){
 function renderHtml(pokemons){
     let images = "";
     for(pokemon of pokemons)
-        if(pokemon.id < 906)
-            images += `<img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/${pokemon.getExtensionName("avif")}" alt="${pokemon.name} image"></img>`;
-        else
-            images += `<img src="https://img.pokemondb.net/sprites/scarlet-violet/normal/${pokemon.getExtensionName("png")}" alt="${pokemon.name} image"></img>`;
+        images += pokemonDiv(pokemon);
 
     let html = `<!DOCTYPE html>
     <html lang="en">
@@ -60,4 +57,27 @@ function renderHtml(pokemons){
     </body>
     </html>"`;
     writeFile("pokemons.html", html);
+}
+
+function pokemonDiv(pokemon)
+{
+    /*<div class="pokemon">
+    <img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/bulbasaur.avif" alt="Bulbasaur image"></img>
+    <p>id</p>
+    <p>pokemon name</p>
+    <p>types</p>
+    </div>*/
+    let div = `<div class="pokemon">`;
+    if(pokemon.id < 906)
+        div += `<img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/${pokemon.getExtensionName("avif")}" alt="${pokemon.name} image"></img>`;
+    else
+        div += `<img src="https://img.pokemondb.net/sprites/scarlet-violet/normal/${pokemon.getExtensionName("png")}" alt="${pokemon.name} image"></img>`;
+    div += `<p>${pokemon.id}</p>`;
+    div += `<p>${pokemon.name}</p>`;
+    div += `<p>`;
+    //for(type of pokemon.types)
+    div += `${pokemon.types} `;
+    div += `</p>`;
+    div += `</div>`
+    return div;
 }
