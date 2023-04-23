@@ -39,9 +39,11 @@ function writePokemonsJson(pokemons){
 }
 
 function renderHtml(pokemons){
-    let images = "";
+    let images = `<div class="pokemons">`;
     for(pokemon of pokemons)
         images += pokemonDiv(pokemon);
+
+    images += `</div>`;
 
     let html = `<!DOCTYPE html>
     <html lang="en">
@@ -50,6 +52,19 @@ function renderHtml(pokemons){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pokemons</title>
+        <style>
+        .pokemons{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .pokemon{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
     </head>
     <body>`;
     html += images;
@@ -72,12 +87,12 @@ function pokemonDiv(pokemon)
         div += `<img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/${pokemon.getExtensionName("avif")}" alt="${pokemon.name} image"></img>`;
     else
         div += `<img src="https://img.pokemondb.net/sprites/scarlet-violet/normal/${pokemon.getExtensionName("png")}" alt="${pokemon.name} image"></img>`;
-    div += `<p>${pokemon.id}</p>`;
-    div += `<p>${pokemon.name}</p>`;
-    div += `<p>`;
+    div += `<span>${pokemon.id}</span>`;
+    div += `<span>${pokemon.name}</span>`;
+    div += `<span>`;
     //for(type of pokemon.types)
     div += `${pokemon.types} `;
-    div += `</p>`;
+    div += `</span>`;
     div += `</div>`
     return div;
 }
