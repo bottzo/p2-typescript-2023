@@ -1,6 +1,6 @@
 import {writeFile} from "fs/promises";
 
-export {writePokemonsJson, loadPokemons, pokemon, renderHtml}
+export {writePokemonsJson, loadPokemons, renderHtml}
 
 function pokemon(id,name,types) {
     this.id = id;
