@@ -1,4 +1,4 @@
-import { loadPokemons, writePokemonsJson, renderHtml} from "./pokemon.js";
+import { loadPokemons, writePokemonsJson, renderHtml} from "./functionality.js";
 
 
 loadPokemons().then(function(pokemons){
