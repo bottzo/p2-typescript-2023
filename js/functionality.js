@@ -19,17 +19,24 @@ async function loadPokemons()
 
 function writePokemonsJson(pokemons){
     let data = '[';
-    for(let pokemon of pokemons)
-        data += `{${pokemon.id},${pokemon.name},[${pokemon.types}]},`;
+    for(const pokemon of pokemons)
+    {
+        data += `{ "id" : ${pokemon.id}, "name" : "${pokemon.name}", "types" : [ `;
+        for (const type of pokemon.types)
+            data += `"${type}",`;
+        //removing last coma
+        data = data.substring(0,data.length-1);
+        data += " ] }, "
+    }
     //removing last coma
-    data = data.substring(0,data.length-1);
-    data += ']';
+    data = data.substring(0,data.length-2);
+    data += " ]";
     writeFile("pokemons.json", data);
 }
 
 function renderHtml(pokemons){
     let images = `<div class="pokemons">`;
-    for(let pokemon of pokemons)
+    for(const pokemon of pokemons)
         images += pokemonDiv(pokemon);
 
     images += `</div>`;
