@@ -67,9 +67,9 @@ function pokemonDiv(pokemon)
 {
     /*<div class="pokemon">
     <img src="https://img.pokemondb.net/sprites/home/normal/2x/avif/bulbasaur.avif" alt="Bulbasaur image"></img>
-    <p>id</p>
-    <p>pokemon name</p>
-    <p>types</p>
+    <span>id</span>
+    <span>pokemon name</span>
+    <span>types</span>
     </div>*/
     let div = `<div class="pokemon">`;
     if(pokemon.id < 906)

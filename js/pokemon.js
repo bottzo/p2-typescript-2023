@@ -7,5 +7,5 @@ pokemon.prototype.getExtensionName = function (extension){
     return `${this.resourceName()}.${extension}`;
 }
 pokemon.prototype.resourceName = function (){
-    return this.name.toLowerCase().replace('.','').replace(' ', '-').replace('\'', '');
+    return this.name.toLowerCase().replace('.','').replace(' ', '-').replace('\'', '').replace('♂', 'm').replace('♀', 'f');
 }
